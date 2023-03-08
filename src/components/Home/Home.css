@@ -1,0 +1,23 @@
+main {
+	height: 80vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.transit-container {
+	width: 90%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.card {
+	width: 10rem;
+	background-color: white;
+	padding: 2rem;
+	border-radius: 0.5rem;
+}
+
+.card img {
+	width: 100%;
+}
