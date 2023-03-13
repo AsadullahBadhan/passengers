@@ -8,23 +8,16 @@ import NotFound from "./components/NotFound/NotFound";
 
 const App = () => {
 	return (
-		<div className="container">
+		<>
 			<Nav></Nav>
-			<Routes>
-				<Route
-					path="/"
-					element={<Home />}
-				/>
-				<Route
-					path="/login"
-					element={<Login />}
-				/>
-				<Route
-					path="*"
-					element={<NotFound />}
-				/>
-			</Routes>
-		</div>
+			<main>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="*" element={<NotFound />} />
+				</Routes>
+			</main>
+		</>
 	);
 };
 
