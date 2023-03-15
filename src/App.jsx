@@ -5,6 +5,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login";
 import NotFound from "./components/NotFound/NotFound";
+import Signup from "./components/Signup/Signup";
 
 const App = () => {
 	return (
@@ -13,6 +14,7 @@ const App = () => {
 			<main>
 				<Routes>
 					<Route path="/" element={<Home />} />
+					<Route path="/signup" element={<Signup />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>

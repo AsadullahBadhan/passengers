@@ -1,10 +1,10 @@
 .transit-container {
-	position: relative;
-	padding: 0 10rem;
 	height: 100vh;
+	position: relative;
+	padding: 0 3rem;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-around;
 	background-image: url("../../assets/background.jpg");
 	background-size: cover;
 	background-position: center;
@@ -20,4 +20,29 @@
 
 .card img {
 	width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+	.card {
+		width: 8rem;
+		padding: 1.7rem;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.transit-container {
+		height: max-content;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	.card {
+		width: 70%;
+		padding: 2rem;
+		margin: 3rem 0;
+	}
+
+	.card:nth-child(1) {
+		margin-top: 6rem;
+	}
 }

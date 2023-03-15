@@ -1,22 +1,29 @@
 import React from "react";
-import "./Login.css";
+import "./Signup.css";
 import { BsFacebook, BsGoogle } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Signup = () => {
 	function handleLogin(e) {
 		e.preventDefault();
 		console.log("form submitted");
 	}
 
 	return (
-		<div className="login-container">
+		<div className="signup-container">
 			<div className="login-form">
-				<h2>Login</h2>
+				<h2>Create New Account</h2>
 
 				<form onSubmit={handleLogin}>
+					<div className="input-container">
+						<input type="text" name="user-name" required />
+						<label htmlFor="user-name">
+							<span className="label-name">Name</span>
+						</label>
+					</div>
+
 					<div className="input-container">
 						<input type="email" name="email" required />
 						<label htmlFor="email">
@@ -31,25 +38,20 @@ const Login = () => {
 						</label>
 					</div>
 
-					<div className="login-options">
-						<div>
-							<input type="checkbox" name="remember-me" defaultChecked />
-							<label htmlFor="remember-me" className="remember-label">
-								Remember Me
-							</label>
-						</div>
-						<Link to="/reset" className="reset">
-							forgot password?
-						</Link>
+					<div className="input-container">
+						<input type="password" name="password" required />
+						<label htmlFor="password">
+							<span className="label-name">Confirm Password</span>
+						</label>
 					</div>
 
 					<button type="submit" className="login">
-						Login
+						Sign Up
 					</button>
 				</form>
 
 				<p className="signup-text">
-					Don't have an account? <Link to="/signup">Create an account.</Link>
+					Already have an account? <Link to="/login">Login.</Link>
 				</p>
 			</div>
 			<div className="divider">
@@ -79,4 +81,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default Signup;
