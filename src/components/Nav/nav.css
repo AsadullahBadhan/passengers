@@ -61,6 +61,7 @@ nav {
 	color: white;
 	padding: 0.2rem 1rem;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 a {

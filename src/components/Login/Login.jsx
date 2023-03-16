@@ -1,31 +1,53 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./Login.css";
 import { BsFacebook, BsGoogle } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
+import { useAuth } from "./../../Contexts/AuthContext";
 
 const Login = () => {
-	function handleLogin(e) {
+	const emailRef = useRef();
+	const passwordRef = useRef();
+	const { currentUser, loginWithEmail, googleSignIn, facebookSignIn } = useAuth();
+
+	const [message, setMessage] = useState("");
+
+	async function handleLogin(e) {
 		e.preventDefault();
-		console.log("form submitted");
+
+		try {
+			setMessage("");
+			await loginWithEmail(emailRef.current.value, passwordRef.current.value);
+		} catch (error) {
+			setMessage(`Failed to Log in ${error}`);
+		}
 	}
 
 	return (
 		<div className="form-container">
+			<h5>{currentUser?.email}</h5>
+			{message && (
+				<div className="message-card">
+					<p>{message}</p>
+					<span className="close-message" onClick={() => setMessage("")}>
+						X
+					</span>
+				</div>
+			)}
 			<div className="login-form">
 				<h2>Login</h2>
 
 				<form onSubmit={handleLogin}>
 					<div className="input-container">
-						<input type="email" name="email" required />
+						<input type="email" name="email" ref={emailRef} required />
 						<label htmlFor="email">
 							<span className="label-name">Email</span>
 						</label>
 					</div>
 
 					<div className="input-container">
-						<input type="password" name="password" required />
+						<input type="password" name="password" ref={passwordRef} required />
 						<label htmlFor="password">
 							<span className="label-name">Password</span>
 						</label>
@@ -58,7 +80,7 @@ const Login = () => {
 				<hr />
 			</div>
 			<div className="oauth-container">
-				<button>
+				<button onClick={facebookSignIn}>
 					<IconContext.Provider value={{ color: "#3076ff", size: "2rem" }}>
 						<span className="auth-icon">
 							<BsFacebook />
@@ -66,7 +88,7 @@ const Login = () => {
 					</IconContext.Provider>
 					Continue with Facebook
 				</button>
-				<button>
+				<button onClick={googleSignIn}>
 					<IconContext.Provider value={{ size: "2rem" }}>
 						<span className="auth-icon">
 							<FcGoogle />

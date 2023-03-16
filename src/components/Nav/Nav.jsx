@@ -1,12 +1,22 @@
 import React, { useRef } from "react";
 import "./nav.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "./../../Contexts/AuthContext";
 
 const Nav = () => {
 	const navRef = useRef();
+	const { currentUser, logout } = useAuth();
 
 	function toggleMenu() {
 		navRef.current.classList.toggle("active");
+	}
+
+	async function handleLogout() {
+		try {
+			await logout();
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	return (
@@ -29,10 +39,21 @@ const Nav = () => {
 						<Link to="/contact">Contact</Link>
 					</li>
 					<li>
-						<button className="login-btn">
-							<Link to="/login">Log In</Link>
-						</button>
+						{currentUser ? (
+							currentUser?.email
+						) : (
+							<button className="login-btn">
+								<Link to="/login">Log In</Link>
+							</button>
+						)}
 					</li>
+					{currentUser && (
+						<li>
+							<button className="login-btn" onClick={handleLogout}>
+								Log Out
+							</button>
+						</li>
+					)}
 				</ul>
 				<div className="hamburger" onClick={toggleMenu}>
 					<span></span>
