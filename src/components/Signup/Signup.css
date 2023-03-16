@@ -1,13 +1,18 @@
-.signup-container {
-	margin: 0 auto;
+.message-card {
 	width: 90%;
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	border-radius: 3px;
+	margin-bottom: 1em;
+	padding: 1rem;
+	background-color: lightcoral;
+	color: #941111;
+	position: relative;
 }
 
-.signup-container .login-form {
-	margin-top: 10rem;
+.close-message {
+	font-size: 1.2rem;
+	font-weight: 500;
+	position: absolute;
+	top: 3px;
+	right: 10px;
+	cursor: pointer;
 }

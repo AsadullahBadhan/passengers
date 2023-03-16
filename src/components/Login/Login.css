@@ -1,7 +1,6 @@
-.login-container {
-	margin: 0 auto;
+.form-container {
+	margin: 5rem auto;
 	width: 90%;
-	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -13,11 +12,10 @@
 	border: 1px solid #ababab;
 	border-radius: 5px;
 	padding: 1.5rem 2.5rem;
-	margin-top: 5rem;
 }
 
 .login-form h2 {
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 }
 
 .login-form form {
@@ -92,11 +90,16 @@ form button.login {
 	text-align: center;
 	font-weight: 600;
 	margin-top: 1rem;
+	cursor: pointer;
 }
 
 button.login:focus {
 	border: 0.3rem solid #ce5a36;
 	border-radius: 4px;
+}
+
+.login[disabled] {
+	background-color: #f78d6d;
 }
 
 .login-options {

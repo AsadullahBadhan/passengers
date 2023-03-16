@@ -1,22 +1,55 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./Signup.css";
 import { BsFacebook, BsGoogle } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { IconContext } from "react-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./../../Contexts/AuthContext";
 
 const Signup = () => {
-	function handleLogin(e) {
+	const emailRef = useRef();
+	const passwordRef = useRef();
+	const confirmPasswordRef = useRef();
+	const { signupWithEmail } = useAuth();
+	const navigate = useNavigate();
+
+	const [loading, setLoading] = useState(false);
+	const [message, setMessage] = useState("");
+
+	async function handleSignup(e) {
 		e.preventDefault();
-		console.log("form submitted");
+
+		if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+			return setMessage("Password do not match");
+		}
+
+		try {
+			setMessage("");
+			setLoading(true);
+			await signupWithEmail(emailRef.current.value, passwordRef.current.value);
+			navigate("/");
+		} catch (error) {
+			console.log(error);
+			setMessage(`Failed to create account ${error}`);
+		}
+
+		setLoading(false);
 	}
 
 	return (
-		<div className="signup-container">
+		<div className="form-container">
+			{message && (
+				<div className="message-card">
+					<p>{message}</p>
+					<span className="close-message" onClick={() => setMessage("")}>
+						X
+					</span>
+				</div>
+			)}
 			<div className="login-form">
 				<h2>Create New Account</h2>
 
-				<form onSubmit={handleLogin}>
+				<form onSubmit={handleSignup}>
 					<div className="input-container">
 						<input type="text" name="user-name" required />
 						<label htmlFor="user-name">
@@ -25,27 +58,27 @@ const Signup = () => {
 					</div>
 
 					<div className="input-container">
-						<input type="email" name="email" required />
+						<input type="email" name="email" ref={emailRef} required />
 						<label htmlFor="email">
 							<span className="label-name">Email</span>
 						</label>
 					</div>
 
 					<div className="input-container">
-						<input type="password" name="password" required />
+						<input type="password" name="password" ref={passwordRef} required />
 						<label htmlFor="password">
 							<span className="label-name">Password</span>
 						</label>
 					</div>
 
 					<div className="input-container">
-						<input type="password" name="password" required />
+						<input type="password" name="password" ref={confirmPasswordRef} required />
 						<label htmlFor="password">
 							<span className="label-name">Confirm Password</span>
 						</label>
 					</div>
 
-					<button type="submit" className="login">
+					<button type="submit" className="login" disabled={loading}>
 						Sign Up
 					</button>
 				</form>
@@ -53,29 +86,6 @@ const Signup = () => {
 				<p className="signup-text">
 					Already have an account? <Link to="/login">Login.</Link>
 				</p>
-			</div>
-			<div className="divider">
-				<hr />
-				<p>Or</p>
-				<hr />
-			</div>
-			<div className="oauth-container">
-				<button>
-					<IconContext.Provider value={{ color: "#3076ff", size: "2rem" }}>
-						<span className="auth-icon">
-							<BsFacebook />
-						</span>
-					</IconContext.Provider>
-					Continue with Facebook
-				</button>
-				<button>
-					<IconContext.Provider value={{ size: "2rem" }}>
-						<span className="auth-icon">
-							<FcGoogle />
-						</span>
-					</IconContext.Provider>
-					Continue with Google
-				</button>
 			</div>
 		</div>
 	);

@@ -6,10 +6,11 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login";
 import NotFound from "./components/NotFound/NotFound";
 import Signup from "./components/Signup/Signup";
+import AuthProvider from "./Contexts/AuthContext";
 
 const App = () => {
 	return (
-		<>
+		<AuthProvider>
 			<Nav></Nav>
 			<main>
 				<Routes>
@@ -19,7 +20,7 @@ const App = () => {
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</main>
-		</>
+		</AuthProvider>
 	);
 };
 

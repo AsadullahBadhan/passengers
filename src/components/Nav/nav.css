@@ -1,13 +1,13 @@
 nav {
 	width: 100%;
-	position: absolute;
+	position: fixed;
+	top: 0;
 	z-index: 1000;
 }
 
 .nav-container {
 	width: 90%;
 	margin: 0 auto;
-	margin-top: 1rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -34,24 +34,25 @@ nav {
 }
 
 .hamburger {
+	width: 40px;
+	height: 40px;
 	display: none;
-	border: 2px solid black;
-	padding: 0.2rem;
-	border-radius: 4px;
+	padding: 0.7rem;
+	border-radius: 50%;
 	cursor: pointer;
 	position: absolute;
 	right: 0;
 }
 
-.hamburger span {
-	display: block;
-	width: 25px;
-	height: 3px;
-	background-color: black;
+.hamburger:hover {
+	background-color: #292929;
 }
 
-.hamburger span:nth-child(2) {
-	margin: 3px 0;
+.hamburger span {
+	display: block;
+	width: 20px;
+	height: 2px;
+	background-color: #e2e2e2;
 }
 
 .login-btn {
@@ -67,6 +68,10 @@ a {
 	color: inherit;
 }
 @media screen and (max-width: 768px) {
+	nav {
+		background-color: #3f3f3f;
+		padding: 0.5rem 0;
+	}
 	.nav-links {
 		padding: 2rem 5rem;
 		flex-direction: column;
@@ -74,11 +79,11 @@ a {
 		justify-content: space-around;
 		position: absolute;
 		right: 0rem;
-		top: 3rem;
+		top: 3.6rem;
 		background-color: white;
 		border-radius: 0.3rem;
-		box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
-		transform: translateY(-150%);
+		box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.75);
+		transform: translateX(150%);
 		transition: transform 0.4s ease;
 	}
 
@@ -88,10 +93,13 @@ a {
 
 	.active {
 		display: flex;
-		transform: translateY(0);
+		transform: translateX(2rem);
 	}
 
 	.hamburger {
-		display: inline-block;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
 	}
 }

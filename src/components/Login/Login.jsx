@@ -12,7 +12,7 @@ const Login = () => {
 	}
 
 	return (
-		<div className="login-container">
+		<div className="form-container">
 			<div className="login-form">
 				<h2>Login</h2>
 
