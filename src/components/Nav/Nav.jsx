@@ -47,13 +47,6 @@ const Nav = () => {
 							</button>
 						)}
 					</li>
-					{currentUser && (
-						<li>
-							<button className="login-btn" onClick={handleLogout}>
-								Log Out
-							</button>
-						</li>
-					)}
 				</ul>
 				<div className="hamburger" onClick={toggleMenu}>
 					<span></span>

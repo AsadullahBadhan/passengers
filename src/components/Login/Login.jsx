@@ -1,15 +1,16 @@
 import React, { useRef, useState } from "react";
 import "./Login.css";
-import { BsFacebook, BsGoogle } from "react-icons/bs";
+import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { IconContext } from "react-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./../../Contexts/AuthContext";
 
 const Login = () => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const { currentUser, loginWithEmail, googleSignIn, facebookSignIn } = useAuth();
+	const { loginWithEmail, googleSignIn, facebookSignIn } = useAuth();
+	const navigate = useNavigate();
 
 	const [message, setMessage] = useState("");
 
@@ -19,6 +20,7 @@ const Login = () => {
 		try {
 			setMessage("");
 			await loginWithEmail(emailRef.current.value, passwordRef.current.value);
+			navigate("/");
 		} catch (error) {
 			setMessage(`Failed to Log in ${error}`);
 		}
@@ -26,7 +28,6 @@ const Login = () => {
 
 	return (
 		<div className="form-container">
-			<h5>{currentUser?.email}</h5>
 			{message && (
 				<div className="message-card">
 					<p>{message}</p>

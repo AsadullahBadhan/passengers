@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { auth, fbProvider, googleProvider } from "../firebase.config";
 
@@ -31,6 +31,10 @@ const AuthProvider = ({ children }) => {
 		return signInWithPopup(auth, fbProvider);
 	}
 
+	function passwordResetEmail(email) {
+		return sendPasswordResetEmail(auth, email);
+	}
+
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, user => {
 			setCurrentUser(user);
@@ -46,6 +50,7 @@ const AuthProvider = ({ children }) => {
 		logout,
 		googleSignIn,
 		facebookSignIn,
+		passwordResetEmail,
 	};
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
