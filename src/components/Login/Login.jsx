@@ -9,7 +9,7 @@ import { useAuth } from "./../../Contexts/AuthContext";
 const Login = () => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const { loginWithEmail, googleSignIn, facebookSignIn } = useAuth();
+	const { loginWithEmail, googleSignIn, facebookSignIn, setCurrentUser, currentUser } = useAuth();
 	const navigate = useNavigate();
 
 	const [message, setMessage] = useState("");
@@ -23,6 +23,15 @@ const Login = () => {
 			navigate("/");
 		} catch (error) {
 			setMessage(`Failed to Log in ${error}`);
+		}
+	}
+
+	async function handleGoogleSignIn() {
+		try {
+			await googleSignIn();
+		} catch (err) {
+			console.log(err);
+			setMessage("Failed to Login with google");
 		}
 	}
 
@@ -89,7 +98,7 @@ const Login = () => {
 					</IconContext.Provider>
 					Continue with Facebook
 				</button>
-				<button onClick={googleSignIn}>
+				<button onClick={handleGoogleSignIn}>
 					<IconContext.Provider value={{ size: "2rem" }}>
 						<span className="auth-icon">
 							<FcGoogle />

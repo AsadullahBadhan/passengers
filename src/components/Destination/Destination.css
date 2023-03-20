@@ -1,0 +1,39 @@
+.destination-container {
+	width: 90%;
+	margin: 5rem auto;
+	display: flex;
+	align-items: flex-start;
+	gap: 2rem;
+}
+
+.destination-container form {
+	background-color: lightgray;
+	padding: 1.5rem;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+}
+
+.destination-container label {
+	color: #3a3a3a;
+}
+
+.destination-container input {
+	width: 15rem;
+	height: 2rem;
+	font-size: 1rem;
+	font-weight: 500;
+	padding-left: 0.3rem;
+	margin-bottom: 1rem;
+	border: none;
+	border-radius: 3px;
+}
+
+.map-container {
+	width: 70%;
+}
+
+.map-container img {
+	width: 100%;
+	height: auto;
+}

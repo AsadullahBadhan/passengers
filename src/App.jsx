@@ -8,6 +8,8 @@ import NotFound from "./components/NotFound/NotFound";
 import Signup from "./components/Signup/Signup";
 import AuthProvider from "./Contexts/AuthContext";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
+import Destination from "./components/Destination/Destination";
+import PrivateRoute from "./Routes/PrivateRoute";
 
 const App = () => {
 	return (
@@ -16,6 +18,14 @@ const App = () => {
 			<main>
 				<Routes>
 					<Route path="/" element={<Home />} />
+					<Route
+						path="/:transport/destination"
+						element={
+							<PrivateRoute>
+								<Destination />
+							</PrivateRoute>
+						}
+					/>
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/reset" element={<ResetPassword />} />

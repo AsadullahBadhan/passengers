@@ -57,13 +57,18 @@ nav {
 	background-color: #e2e2e2;
 }
 
-.login-btn {
+.main-btn {
 	all: unset;
 	background-color: #ff6e40;
 	color: white;
 	padding: 0.2rem 1rem;
 	border-radius: 5px;
 	cursor: pointer;
+	text-align: center;
+}
+
+nav .main-btn {
+	margin-left: 3rem;
 }
 
 a {
@@ -82,8 +87,11 @@ a {
 		background-color: white;
 		border-radius: 0.3rem;
 		box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.75);
-		transform: translateX(150%);
 		transition: transform 0.4s ease;
+	}
+
+	.nav-links.inactive {
+		transform: translateX(150%);
 	}
 
 	.nav-links li {
@@ -91,9 +99,12 @@ a {
 		color: #3f3f3f;
 	}
 
+	nav .main-btn {
+		margin: 0.8rem 0;
+	}
+
 	.active {
-		display: flex;
-		transform: translateX(2rem);
+		transform: translateX(0);
 	}
 
 	.hamburger {
