@@ -76,6 +76,10 @@ a {
 	color: inherit;
 }
 @media screen and (max-width: 768px) {
+	.nav-container {
+		width: 95%;
+	}
+
 	.nav-links {
 		padding: 2rem 5rem;
 		flex-direction: column;

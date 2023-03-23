@@ -1,34 +1,28 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import locationMap from "../../assets/Map.png";
+import LocationForm from "../LocationForm/LocationForm";
+import TravelInfo from "../TravelInfo/TravelInfo";
 
 import "./Destination.css";
 
 const Destination = () => {
 	const { transport } = useParams();
+	const [location, setLocation] = useState({
+		pickFrom: "",
+		pickTo: "",
+		date: "",
+		time: "",
+		infoCollected: false,
+	});
 
-	function handleDestination(e) {
-		e.preventDefault();
-	}
+	// console.log(travelOption);
+
 	return (
 		<div className="destination-container">
-			<form onSubmit={handleDestination}>
-				<label htmlFor="pick-from">Pick From</label>
-				<input type="text" name="pick-from" />
+			{!location.infoCollected && <LocationForm setLocation={setLocation} />}
 
-				<label htmlFor="pick-to">Pick To</label>
-				<input type="text" name="pick-to" />
-
-				<label htmlFor="pick-date">Pick Date</label>
-				<input type="date" name="pick-date" id="" />
-
-				<label htmlFor="pick-time">Pick Time</label>
-				<input type="time" name="pick-time" id="" />
-
-				<button type="submit" className="main-btn">
-					Search
-				</button>
-			</form>
+			{location.infoCollected && <TravelInfo location={location} transport={transport} />}
 			<div className="map-container">
 				<img src={locationMap} alt="" />
 			</div>

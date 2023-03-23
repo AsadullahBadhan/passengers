@@ -1,0 +1,22 @@
+.transport-fair {
+	width: 100%;
+	height: 4rem;
+	padding: 0.4rem;
+	margin-top: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	border-radius: 3px;
+	background-color: white;
+	font-weight: 600;
+}
+
+.transport-fair img {
+	height: 100%;
+	width: auto;
+}
+
+.transport-fair p:has(span) span {
+	margin-right: 5px;
+	color: #ababab;
+}
