@@ -1,16 +1,14 @@
 import React, { useRef, useState } from "react";
 import "./Signup.css";
-import { BsFacebook, BsGoogle } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
-import { IconContext } from "react-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./../../Contexts/AuthContext";
 
 const Signup = () => {
+	const userNameRef = useRef();
 	const emailRef = useRef();
 	const passwordRef = useRef();
 	const confirmPasswordRef = useRef();
-	const { signupWithEmail } = useAuth();
+	const { signupWithEmail} = useAuth();
 	const navigate = useNavigate();
 
 	const [loading, setLoading] = useState(false);
@@ -51,7 +49,7 @@ const Signup = () => {
 
 				<form onSubmit={handleSignup}>
 					<div className="input-container">
-						<input type="text" name="user-name" required />
+						<input type="text" name="user-name" required ref={userNameRef}/>
 						<label htmlFor="user-name">
 							<span className="label-name">Name</span>
 						</label>

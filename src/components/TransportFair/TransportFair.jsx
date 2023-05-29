@@ -14,7 +14,7 @@ const TransportFair = ({ transport, fair }) => {
 				</span>
 				{Math.floor(Math.random() * 5) + 1}
 			</p>
-			<p>{fair}</p>
+			<p>{fair}৳</p>
 		</div>
 	);
 };
